@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 2 - Tablas y enlaces</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #F2F5F9;
+            color: #263445;
+            margin: 0;
+            padding: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #17365D;
+            font-size: 28px;
+        }
+
+        .subtitulo {
+            text-align: center;
+            color: #526579;
+            margin-bottom: 25px;
+        }
+
+        .integrantes {
+            text-align: center;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .contenedor {
+            max-width: 1000px;
+            margin: auto;
+            background-color: white;
+            padding: 22px;
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #17365D;
+            font-size: 21px;
+        }
+
+        .instruccion {
+            line-height: 1.6;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background-color: #17365D;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px;
+            border: 1px solid #D5DDE7;
+        }
+
+        .pais {
+            background-color: #DCE8F5;
+            color: #17365D;
+            font-weight: bold;
+            text-align: center;
+            width: 23%;
+        }
+
+        .bandera {
+            display: block;
+            width: 95px;
+            height: 60px;
+            object-fit: cover;
+            margin: 10px auto;
+            cursor: pointer;
+            border: 1px solid #CCD5E0;
+        }
+
+        .boton {
+            background-color: #245A91;
+            color: white;
+            border: none;
+            padding: 7px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .boton:hover {
+            background-color: #17365D;
+        }
+
+        tr:nth-child(even) td:not(.pais) {
+            background-color: #F7F9FC;
+        }
+
+        a {
+            color: #1769AA;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .pie {
+            text-align: center;
+            margin-top: 25px;
+            color: #526579;
+            font-size: 13px;
+        }
+
+        /* Ventana con información del país */
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.55);
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
+            box-sizing: border-box;
+        }
+
+        .modal-contenido {
+            background-color: white;
+            padding: 25px;
+            width: 380px;
+            max-width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            border: 1px solid #CCD5E0;
+            border-radius: 8px;
+        }
+
+        .cerrar {
+            float: right;
+            font-size: 22px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: #17365D;
+        }
+
+        .modal-contenido h2 {
+            text-align: center;
+        }
+
+        .bandera-modal {
+            display: block;
+            width: 130px;
+            height: 85px;
+            object-fit: cover;
+            margin: 15px auto;
+        }
+
+        .dato {
+            background-color: #F2F5F9;
+            padding: 10px;
+            margin: 8px 0;
+            border-left: 3px solid #245A91;
+            line-height: 1.5;
+        }
+
+        .descripcion {
+            line-height: 1.6;
+            color: #526579;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .contenedor {
+                padding: 10px;
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 530px;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>ACTIVIDAD 2: TABLAS Y ENLACES</h1>
+
+    <p class="subtitulo">
+        Periódicos digitales agrupados por países
+    </p>
+
+    <div class="integrantes">
+        <strong>Integrantes:</strong><br>
+        Erika Pallasco<br>
+        Allauca Madelyn<br>
+        Andrea Quito
+    </div>
+
+    <div class="contenedor">
+
+        <h2>Periódicos de diferentes países</h2>
+
+        <p class="instruccion">
+            La siguiente tabla presenta periódicos digitales de España,
+            Ecuador, Argentina y México. Haz clic en la bandera para
+            consultar información de cada país y en los enlaces para
+            visitar los periódicos.
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>País</th>
+                    <th>Nombre del periódico</th>
+                    <th>Dominio web</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!-- ESPAÑA -->
+                <tr>
+                    <td class="pais" rowspan="3">
+                        España
+                        <img class="bandera"
+                             src="https://flagcdn.com/w320/es.png"
+                             alt="Bandera de España"
+                             onclick="mostrarPais('espana')">
+
+                        <button class="boton"
+                                onclick="mostrarPais('espana')">
+                            Ver datos
+                        </button>
+                    </td>
+                    <td>El País</td>
+                    <td><a href="https://elpais.com/" target="_blank"
+                           rel="noopener noreferrer">www.elpais.com</a></td>
+                </tr>
+                <tr>
+                    <td>ABC</td>
+                    <td><a href="https://www.abc.es/" target="_blank"
+                           rel="noopener noreferrer">www.abc.es</a></td>
+                </tr>
+                <tr>
+                    <td>El Mundo</td>
+                    <td><a href="https://www.elmundo.es/" target="_blank"
+                           rel="noopener noreferrer">www.elmundo.es</a></td>
+                </tr>
+
+                <!-- ECUADOR -->
+                <tr>
+                    <td class="pais" rowspan="3">
+                        Ecuador
+                        <img class="bandera"
+                             src="https://flagcdn.com/w320/ec.png"
+                             alt="Bandera de Ecuador"
+                             onclick="mostrarPais('ecuador')">
+
+                        <button class="boton"
+                                onclick="mostrarPais('ecuador')">
+                            Ver datos
+                        </button>
+                    </td>
+                    <td>El Universo</td>
+                    <td><a href="https://www.eluniverso.com/" target="_blank"
+                           rel="noopener noreferrer">www.eluniverso.com</a></td>
+                </tr>
+                <tr>
+                    <td>El Comercio</td>
+                    <td><a href="https://www.elcomercio.com/" target="_blank"
+                           rel="noopener noreferrer">www.elcomercio.com</a></td>
+                </tr>
+                <tr>
+                    <td>Expreso</td>
+                    <td><a href="https://www.expreso.ec/" target="_blank"
+                           rel="noopener noreferrer">www.expreso.ec</a></td>
+                </tr>
+
+                <!-- ARGENTINA -->
+                <tr>
+                    <td class="pais" rowspan="3">
+                        Argentina
+                        <img class="bandera"
+                             src="https://flagcdn.com/w320/ar.png"
+                             alt="Bandera de Argentina"
+                             onclick="mostrarPais('argentina')">
+
+                        <button class="boton"
+                                onclick="mostrarPais('argentina')">
+                            Ver datos
+                        </button>
+                    </td>
+                    <td>Clarín</td>
+                    <td><a href="https://www.clarin.com/" target="_blank"
+                           rel="noopener noreferrer">www.clarin.com</a></td>
+                </tr>
+                <tr>
+                    <td>La Nación</td>
+                    <td><a href="https://www.lanacion.com.ar/" target="_blank"
+                           rel="noopener noreferrer">www.lanacion.com.ar</a></td>
+                </tr>
+                <tr>
+                    <td>Página/12</td>
+                    <td><a href="https://www.pagina12.com.ar/" target="_blank"
+                           rel="noopener noreferrer">www.pagina12.com.ar</a></td>
+                </tr>
+
+                <!-- MÉXICO -->
+                <tr>
+                    <td class="pais" rowspan="3">
+                        México
+                        <img class="bandera"
+                             src="https://flagcdn.com/w320/mx.png"
+                             alt="Bandera de México"
+                             onclick="mostrarPais('mexico')">
+
+                        <button class="boton"
+                                onclick="mostrarPais('mexico')">
+                            Ver datos
+                        </button>
+                    </td>
+                    <td>El Universal</td>
+                    <td><a href="https://www.eluniversal.com.mx/"
+                           target="_blank" rel="noopener noreferrer">
+                           www.eluniversal.com.mx</a></td>
+                </tr>
+                <tr>
+                    <td>La Jornada</td>
+                    <td><a href="https://www.jornada.com.mx/"
+                           target="_blank" rel="noopener noreferrer">
+                           www.jornada.com.mx</a></td>
+                </tr>
+                <tr>
+                    <td>Milenio</td>
+                    <td><a href="https://www.milenio.com/"
+                           target="_blank" rel="noopener noreferrer">
+                           www.milenio.com</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p class="pie">
+            Actividad de Informática | HTML, CSS y JavaScript
+        </p>
+
+    </div>
+
+    <!-- Ventana emergente -->
+
+    <div class="modal" id="modalPais" onclick="cerrarFondo(event)">
+
+        <div class="modal-contenido">
+
+            <button class="cerrar" onclick="cerrarModal()"
+                    aria-label="Cerrar ventana">&times;</button>
+
+            <h2 id="tituloPais">Información del país</h2>
+
+            <img id="imagenModal" class="bandera-modal" src=""
+                 alt="Bandera del país">
+
+            <div id="datosPais"></div>
+
+            <p id="descripcionPais" class="descripcion"></p>
+
+        </div>
+    </div>
+
+    <script>
+        const paises = {
+            espana: {
+                nombre: "España",
+                bandera: "https://flagcdn.com/w320/es.png",
+                capital: "Madrid",
+                poblacion: "Aproximadamente 49,6 millones",
+                idioma: "Español",
+                moneda: "Euro",
+                superficie: "506.000 km² aproximadamente",
+                descripcion: "España está situada en Europa y destaca por su historia, arquitectura, gastronomía y cultura."
+            },
+
+            ecuador: {
+                nombre: "Ecuador",
+                bandera: "https://flagcdn.com/w320/ec.png",
+                capital: "Quito",
+                poblacion: "Aproximadamente 18,3 millones",
+                idioma: "Español y lenguas ancestrales",
+                moneda: "Dólar estadounidense",
+                superficie: "256.000 km² aproximadamente",
+                descripcion: "Ecuador está ubicado en América del Sur y cuenta con cuatro regiones naturales: Costa, Sierra, Amazonía y Galápagos."
+            },
+
+            argentina: {
+                nombre: "Argentina",
+                bandera: "https://flagcdn.com/w320/ar.png",
+                capital: "Buenos Aires",
+                poblacion: "Aproximadamente 46 millones",
+                idioma: "Español",
+                moneda: "Peso argentino",
+                superficie: "2.780.000 km² aproximadamente",
+                descripcion: "Argentina está situada en América del Sur y es conocida por el tango, sus paisajes y la región de la Patagonia."
+            },
+
+            mexico: {
+                nombre: "México",
+                bandera: "https://flagcdn.com/w320/mx.png",
+                capital: "Ciudad de México",
+                poblacion: "Aproximadamente 132 millones",
+                idioma: "Español y lenguas indígenas",
+                moneda: "Peso mexicano",
+                superficie: "1.964.000 km² aproximadamente",
+                descripcion: "México se encuentra en América del Norte y destaca por sus culturas antiguas, tradiciones y gastronomía."
+            }
+        };
+
+        function mostrarPais(codigo) {
+            const pais = paises[codigo];
+
+            document.getElementById("tituloPais").textContent =
+                pais.nombre;
+
+            document.getElementById("imagenModal").src =
+                pais.bandera;
+
+            document.getElementById("imagenModal").alt =
+                "Bandera de " + pais.nombre;
+
+            document.getElementById("datosPais").innerHTML = `
+                <div class="dato"><strong>Capital:</strong> ${pais.capital}</div>
+                <div class="dato"><strong>Población:</strong> ${pais.poblacion}</div>
+                <div class="dato"><strong>Idioma:</strong> ${pais.idioma}</div>
+                <div class="dato"><strong>Moneda:</strong> ${pais.moneda}</div>
+                <div class="dato"><strong>Superficie:</strong> ${pais.superficie}</div>
+            `;
+
+            document.getElementById("descripcionPais").textContent =
+                pais.descripcion;
+
+            document.getElementById("modalPais").style.display = "flex";
+        }
+
+        function cerrarModal() {
+            document.getElementById("modalPais").style.display = "none";
+        }
+
+        function cerrarFondo(evento) {
+            if (evento.target.id === "modalPais") {
+                cerrarModal();
+            }
+        }
+
+        document.addEventListener("keydown", function(evento) {
+            if (evento.key === "Escape") {
+                cerrarModal();
+            }
+        });
+    </script>
+
+</body>
+</html>
